@@ -1,0 +1,25 @@
+Welcome to the Treq API Playground!
+This file is served over HTTP.
+Anyone can access it.
+
+There are four flags hidden somewhere in this website. 
+Find them all and submit them to /submit.html to reveal the secret.
+
+
+This exercise shows how credentials sent over HTTP can be intercepted, while HTTPS keeps them protected.
+
+### 1. Install mitmproxy
+- Recommended: use Python ≥ 3.7
+- Run:
+  pip install mitmproxy
+
+### 2. Start mitmproxy in proxy mode 
+- Run:
+  mitmproxy --mode regular --listen-port 8080
+
+3. Curl to see the difference
+- curl -x http://localhost:8080 http://<your-ip>/files/credentials.txt
+- curl -x https://localhost:8080 http://<your-ip>/files/credentials.txt
+
+*curl -x sets up the proxy temporarily.
+

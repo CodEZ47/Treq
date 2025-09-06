@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>403 Forbidden</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      background: linear-gradient(135deg, #ff4e50 0%, #f9d423 100%);
+      color: #fff;
+      font-family: 'Fira Mono', 'Consolas', monospace;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      margin: 0;
+    }
+    .container {
+      background: rgba(0,0,0,0.4);
+      padding: 2.5rem 2rem;
+      border-radius: 16px;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+      text-align: center;
+      max-width: 400px;
+    }
+    h1 {
+      font-size: 3rem;
+      margin-bottom: 0.5rem;
+      letter-spacing: 2px;
+    }
+    .icon {
+      font-size: 4rem;
+      margin-bottom: 0.5rem;
+      animation: shake 1.2s infinite alternate;
+    }
+    @keyframes shake {
+      0% { transform: rotate(-5deg);}
+      100% { transform: rotate(5deg);}
+    }
+    p {
+      font-size: 1.2rem;
+      margin-top: 0.5rem;
+    }
+    .tip {
+      margin-top: 1.5rem;
+      font-size: 0.95rem;
+      color: #ffe082;
+      opacity: 0.85;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="icon">🚫</div>
+    <h1>403 Forbidden</h1>
+    <p>You must use <strong>HTTPS</strong> to access this resource.</p>
+  </div>
+</body>
+</html>

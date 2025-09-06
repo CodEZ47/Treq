@@ -1,0 +1,5 @@
+If you're reading this in plain text, congratulations! You've just intercepted a file over HTTP.
+
+Remember: HTTP traffic can be read by anyone on the network.
+
+FLAG{plain_and_exposed}

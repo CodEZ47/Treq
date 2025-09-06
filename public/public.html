@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>⚠️ Public Zone</title>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Mono&display=swap" rel="stylesheet">
+  <style>
+    body {
+      background: linear-gradient(135deg, #232526 0%, #414345 100%);
+      color: #ffe066;
+      font-family: 'Fira Mono', monospace;
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+    }
+    .container {
+      background: rgba(30, 30, 30, 0.92);
+      border-radius: 18px;
+      box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+      padding: 2.5rem 2rem 2rem 2rem;
+      margin-top: 3rem;
+      max-width: 420px;
+      width: 90%;
+      text-align: center;
+    }
+    h2 {
+      font-size: 2.2rem;
+      margin-bottom: 0.5rem;
+      letter-spacing: 1px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5em;
+    }
+    .warning {
+      background: #ffb300;
+      color: #232526;
+      padding: 0.5em 1em;
+      border-radius: 8px;
+      margin: 1.2em 0 1.5em 0;
+      font-weight: bold;
+      font-size: 1.1em;
+      display: inline-block;
+    }
+    .protocol {
+      margin: 1.5em 0 0.5em 0;
+      font-size: 1.05em;
+      color: #b2ff59;
+    }
+    .playground-img {
+      margin: 1.5em 0 0.5em 0;
+      border-radius: 12px;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.25);
+      width: 90%;
+      max-width: 320px;
+      transition: transform 0.2s;
+    }
+    .playground-img:hover {
+      transform: scale(1.04) rotate(-2deg);
+    }
+    .note {
+      color: #ffd700;
+      font-size: 0.98em;
+      margin-top: 1.2em;
+      opacity: 0.85;
+    }
+    a {
+      color: #ffe066;
+      text-decoration: underline;
+      transition: color 0.2s;
+    }
+    a:hover {
+      color: #b2ff59;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>⚠️ Public Zone</h2>
+    <div class="warning">
+      This page is served over <b>HTTP</b> and can be intercepted.<br>
+      <span style="font-size:0.95em;">Sensitive information is <u>not</u> secure here.</span>
+    </div>
+    <img class="playground-img" src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExeG1maTRlcGI1eno5dmdiczBkc3E4NHNuYXNoN3d4NHh2ZnQyM2QweSZlcD12MV9naWZzX3NlYXJjaCZjdD1n/VYvnMDmbZMegStd5Uw/giphy.gif" alt="Snooping Lady Gif">
+    <div class="note">
+      <b>Why am I seeing this?</b><br>
+      You are in a public, unsecured area of the site.<br>
+      For your safety, avoid entering passwords or personal data.
+    </div>
+    <div class="protocol">
+      <script>
+        document.write("Protocol used: <b>" + window.location.protocol + "</b>");
+      </script>
+    </div>
+    <div class="note" style="margin-top:1.5em;">
+      <a href="/index.html">Return to the secure homepage</a>
+    </div>
+  </div>
+</body>
+</html>

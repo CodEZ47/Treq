@@ -1,0 +1,7 @@
+You found the admin zone!
+
+But should you have?
+
+If this wasn’t protected by HTTPS, it could be leaked.
+
+FLAG{no_admin_on_http}

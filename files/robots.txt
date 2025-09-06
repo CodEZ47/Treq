@@ -1,0 +1,8 @@
+User-agent: *
+Disallow: /admin/flag.txt
+Disallow: /secret.txt
+Disallow: /morefiles/asphalt/credentials.txt
+Disallow: /files/runner/extra-secure.txt
+
+# Maybe the real flag is in plain view?
+FLAG{robots_are_sneaky}

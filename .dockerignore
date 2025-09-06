@@ -1,0 +1,9 @@
+nginx/ssl/*.key
+nginx/ssl/*.crt
+nginx/ssl/*.pem
+.git
+.gitignore
+.dockerignore
+Dockerfile
+README.md
+LICENSE

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Run With Code!</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background: linear-gradient(120deg, #e0eafc 0%, #cfdef3 100%);
+            margin: 0;
+            padding: 0;
+            color: #222;
+        }
+        header {
+            background: #222;
+            color: #fff;
+            padding: 2rem 1rem;
+            text-align: center;
+        }
+        .runners {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+        .runner-card {
+            background: #fff;
+            border-radius: 1rem;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            padding: 1.5rem;
+            width: 270px;
+            text-align: center;
+            transition: transform 0.2s;
+        }
+        .runner-card:hover {
+            transform: translateY(-8px) scale(1.03);
+        }
+        .runner-img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 1rem;
+            border: 3px solid #4f8ef7;
+            background: #f4f8fb;
+        }
+        footer {
+            text-align: center;
+            padding: 1rem;
+            background: #222;
+            color: #fff;
+            margin-top: 2rem;
+        }
+        code {
+            background: #f4f8fb;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 0.95em;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Run With Code!</h1>
+        <p>Celebrating the programs and tools that keep our computers running.</p>
+    </header>
+    <section class="runners">
+        <div class="runner-card">
+            <img class="runner-img" src="https://cdn-icons-png.flaticon.com/512/2721/2721297.png" alt="Python Runner">
+            <h2>Python Interpreter</h2>
+            <p>Executes <code>.py</code> scripts line by line. Loved for its readability and versatility.</p>
+        </div>
+        <div class="runner-card">
+            <img class="runner-img" src="https://cdn-icons-png.flaticon.com/512/226/226777.png" alt="Java Runner">
+            <h2>Java Virtual Machine</h2>
+            <p>Runs <code>.class</code> files. Powers cross-platform apps from desktop to enterprise servers.</p>
+        </div>
+        <div class="runner-card">
+            <img class="runner-img" src="https://cdn-icons-png.flaticon.com/512/5968/5968292.png" alt="Node.js Runner">
+            <h2>Node.js</h2>
+            <p>Executes JavaScript outside the browser. Perfect for scalable network applications.</p>
+        </div>
+        <div class="runner-card">
+            <img class="runner-img" src="https://cdn-icons-png.flaticon.com/512/732/732212.png" alt="Bash Runner">
+            <h2>Bash Shell</h2>
+            <p>Runs shell scripts and commands. The classic runner for automating tasks on Unix systems.</p>
+        </div>
+    </section>
+    <footer>
+        &copy; 2024 Run With Code! | Keep your programs running.
+    </footer>
+</body>
+</html>

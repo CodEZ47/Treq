@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Welcome to Treq</title>
+  <link href="https://fonts.googleapis.com/css?family=Fira+Mono:400,700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      background: linear-gradient(135deg, #101820 0%, #1a2a2f 100%);
+      color: #e0ffe0;
+      font-family: 'Fira Mono', monospace;
+      padding: 2.5rem 1.5rem;
+      max-width: 700px;
+      margin: 2rem auto;
+      border-radius: 18px;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.45);
+      border: 1px solid #222;
+    }
+    h1 {
+      color: #00ffb3;
+      font-size: 2.2rem;
+      letter-spacing: 2px;
+      text-shadow: 0 2px 12px #00ffb355;
+      margin-bottom: 0.5em;
+    }
+    h2 {
+      color: #00e6e6;
+      margin-top: 2em;
+      margin-bottom: 0.5em;
+      font-size: 1.3rem;
+      border-left: 4px solid #00ffb3;
+      padding-left: 0.5em;
+      letter-spacing: 1px;
+    }
+    a {
+      color: #00ffe7;
+      text-decoration: none;
+      border-bottom: 1px dashed #00ffe7;
+      transition: color 0.2s, border-bottom 0.2s;
+    }
+    a:hover {
+      color: #fff;
+      border-bottom: 2px solid #00ffb3;
+      background: #00ffb320;
+    }
+    ul {
+      margin-left: 1.2em;
+      margin-bottom: 1.2em;
+    }
+    li {
+      margin-bottom: 0.5em;
+      line-height: 1.5;
+    }
+    code {
+      background: #1a2a2f;
+      color: #00ffb3;
+      padding: 0.15em 0.4em;
+      border-radius: 5px;
+      font-size: 1em;
+      font-family: inherit;
+      box-shadow: 0 1px 4px #00ffb320;
+    }
+    .hint {
+      color: #ffe066;
+      background: #222;
+      padding: 0.1em 0.3em;
+      border-radius: 4px;
+      font-weight: bold;
+      font-size: 1em;
+    }
+    strong {
+      color: #fff;
+      font-weight: bold;
+      text-shadow: 0 1px 8px #00ffb355;
+    }
+    em {
+      color: #00ffb3;
+      font-style: normal;
+      letter-spacing: 1px;
+    }
+    hr {
+      border: none;
+      border-top: 1px solid #00ffb3;
+      margin: 2.5em 0 1.5em 0;
+      opacity: 0.4;
+    }
+    @media (max-width: 600px) {
+      body {
+        padding: 1rem 0.5rem;
+        max-width: 98vw;
+      }
+      h1 { font-size: 1.3rem; }
+      h2 { font-size: 1.05rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Treq</h1>
+  <p style="font-size: medium;"><em>Test | Request | Encrypt | Query</em></p>
+  <p><strong>Welcome to your own <span style="color:#00ffe7">HTTPS training lab</span> in a container.</strong></p>
+
+  <h2>What is this?</h2>
+  <p>
+    This project is a hands-on sandbox to explore the difference between
+    <span class="hint">HTTP and HTTPS</span>, understand
+    <span class="hint">TLS encryption</span>, and simulate a basic
+    <span class="hint">Man-in-the-Middle</span> logging scenario.
+  </p>
+
+  <h2>Objectives</h2>
+  <ul>
+    <li>Compare file downloads over <span class="hint">HTTP</span> and <span class="hint">HTTPS</span></li>
+    <li>Observe what a <span class="hint">"public"</span> zone feels like vs a secure one</li>
+    <li>See how <span class="hint">credential leakage</span> happens on insecure channels</li>
+    <li>Use tools like <code>curl -v</code> and <code>openssl s_client</code> to inspect handshakes</li>
+  </ul>
+
+  <h2>Explore These Paths</h2>
+  <ul>
+    <li><a href="/files/">/files/</a> – Mixed test files</li>
+    <li><a href="/public/">/public/</a> – Unsecured public zone</li>
+    <li><a href="/admin/">/admin/</a> – Forbidden over HTTP</li>
+    <li><a href="/files/robots.txt">/robots.txt</a> – Sneaky clues</li>
+  </ul>
+
+  <h2>Find All the Flags</h2>
+  <p>
+    As you explore, you'll find hidden <code>FLAG{}</code> values. Collect them.<br>
+    Once you have them all, go to <a href="/submit.html">/submit.html</a> to unlock the easter egg.
+  </p>
+
+  <h2>Terminal Integration</h2>
+  <p>
+    The secret command you’ll get will have use on my portfolio website.
+  </p>
+
+  <h2>Tools to Try</h2>
+  <ul>
+    <li><code>curl -v https://treq.test/public/help.txt</code></li>
+    <li><code>curl -v http://treq.test/files/plainview.txt</code></li>
+    <li><code>curl -v https://treq.test/files/plainview.txt</code></li>
+    <li><code>openssl s_client -connect treq.test:443</code></li>
+  </ul>
+
+  <h2>Pro Tips</h2>
+  <ul>
+    <li>Use a browser to inspect certificate warnings.</li>
+    <li>Try accessing HTTP-only zones over HTTPS and vice versa.</li>
+    <li>Compare what changes when using a secure vs insecure protocol.</li>
+  </ul>
+
+  <hr>
+  <p><em>Project Treq</em></p>
+
+</body>
+</html>

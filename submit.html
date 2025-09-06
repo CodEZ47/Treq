@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Flag Submission</title>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      background: radial-gradient(ellipse at top left, #222 0%, #000 100%);
+      color: #39ff14;
+      font-family: 'Fira Mono', monospace;
+      padding: 0;
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+    .container {
+      background: rgba(20, 20, 20, 0.97);
+      border: 2px solid #39ff14;
+      border-radius: 16px;
+      box-shadow: 0 0 32px #39ff1460;
+      padding: 2.5rem 2rem 2rem 2rem;
+      max-width: 420px;
+      width: 100%;
+      text-align: center;
+    }
+    h1 {
+      font-size: 2.2rem;
+      margin-bottom: 0.5rem;
+      letter-spacing: 2px;
+      text-shadow: 0 0 8px #39ff14, 0 0 2px #fff;
+    }
+    p {
+      color: #baffc9;
+      margin-bottom: 1.2rem;
+      font-size: 1.1rem;
+    }
+    textarea {
+      width: 100%;
+      height: 160px;
+      font-family: 'Fira Mono', monospace;
+      font-size: 1rem;
+      background: #111;
+      color: #39ff14;
+      border: 1.5px solid #39ff14;
+      border-radius: 8px;
+      padding: 0.8rem;
+      margin-bottom: 1.2rem;
+      resize: vertical;
+      box-shadow: 0 0 8px #39ff1430 inset;
+      transition: border 0.2s;
+    }
+    textarea:focus {
+      outline: none;
+      border: 2px solid #fff700;
+      box-shadow: 0 0 12px #fff70080;
+    }
+    button {
+      background: linear-gradient(90deg, #39ff14 0%, #fff700 100%);
+      color: #111;
+      font-family: 'Fira Mono', monospace;
+      font-weight: bold;
+      font-size: 1.1rem;
+      border: none;
+      border-radius: 8px;
+      padding: 0.7rem 2.2rem;
+      cursor: pointer;
+      box-shadow: 0 0 12px #39ff1460;
+      transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+      margin-bottom: 0.5rem;
+    }
+    button:hover, button:focus {
+      background: linear-gradient(90deg, #fff700 0%, #39ff14 100%);
+      color: #000;
+      box-shadow: 0 0 24px #fff70080;
+      outline: none;
+    }
+    #result {
+      margin-top: 1.2rem;
+      font-weight: bold;
+      color: #fff700;
+      text-shadow: 0 0 8px #fff70080;
+      min-height: 1.5em;
+      letter-spacing: 1px;
+    }
+    @media (max-width: 600px) {
+      .container {
+        padding: 1.2rem 0.5rem 1.5rem 0.5rem;
+        max-width: 98vw;
+      }
+      h1 {
+        font-size: 1.4rem;
+      }
+      textarea {
+        font-size: 0.95rem;
+        height: 110px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>🚩 Submit Flags</h1>
+    <p>Paste all the flags you've found, one per line:</p>
+    <textarea id="flagsInput" placeholder="FLAG{...}&#10;FLAG{...}"></textarea><br>
+    <button onclick="checkFlags()">Submit</button>
+    <div id="result"></div>
+  </div>
+  <script src="./js/flag-checker.js"></script>
+</body>
+</html>
