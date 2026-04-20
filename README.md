@@ -29,7 +29,7 @@ Optional: mitmproxy for traffic inspection
 ### Option 1: Clone & Build Locally
 
 
-git clone https://github.com/your-username/treq.git
+git clone https://github.com/codez47/treq.git
 
 cd treq
 
