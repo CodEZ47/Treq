@@ -26,10 +26,11 @@ Optional: mitmproxy for traffic inspection
 
 ## Getting Started
 
-### Option 1: Clone & Build Locally
+### Option 1: Fork & Clone & Build Locally
 
+Fork this repo
 
-git clone https://github.com/codez47/treq.git
+git clone https://github.com/your-username/treq.git
 
 cd treq
 
