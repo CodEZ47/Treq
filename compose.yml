@@ -1,0 +1,25 @@
+networks:
+  treq-network:
+    driver: bridge
+
+services:
+  treq-frontend:
+    depends_on:
+      - treq-backend
+    build: ./frontend
+    container_name: treq-frontend
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./frontend/nginx/ssl/treq.key:/etc/nginx/ssl/treq.key:ro
+      - ./frontend/nginx/ssl/treq.crt:/etc/nginx/ssl/treq.crt:ro
+      - ./frontend/nginx/ssl/dhparam.pem:/etc/nginx/ssl/dhparam.pem:ro
+    networks:
+      - treq-network
+
+  treq-backend:
+    build: ./backend
+    container_name: treq-backend
+    networks:
+      - treq-network

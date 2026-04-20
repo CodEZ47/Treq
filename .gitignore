@@ -1,2 +1,2 @@
-nginx/ssl/*
+**/ssl/
 flag-checker.js

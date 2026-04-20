@@ -1,6 +1,6 @@
-nginx/ssl/*.key
-nginx/ssl/*.crt
-nginx/ssl/*.pem
+frontend/nginx/ssl/*.key
+frontend/nginx/ssl/*.crt
+frontend/nginx/ssl/*.pem
 .git
 .gitignore
 .dockerignore
