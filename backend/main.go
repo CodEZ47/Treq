@@ -8,14 +8,12 @@ import (
 
 func main() {
 	http.HandleFunc("/health", func(w http.ResponseWriter, r *http.Request){
-		fmt.Fprintln(w, "ok")
+		fmt.Fprintln(w, "OK")
 	})
 
 	http.HandleFunc("/validate", func(w http.ResponseWriter, r *http.Request){
 		fmt.Fprintln(w, "flag received")
 	})
-
-	fmt.Print("Backend up and Running...")
 
 	err := http.ListenAndServe(":8080", nil)
 
