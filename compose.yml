@@ -33,3 +33,11 @@ services:
     container_name: treq-simulator
     networks:
       - treq-network
+
+  treq-hacker:
+    depends_on:
+      - treq-simulator
+    build: ./hacker
+    container_name: treq-hacker
+    networks:
+      - treq-network

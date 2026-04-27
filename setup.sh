@@ -21,7 +21,7 @@ if [[ -f frontend/nginx/ssl/treq.key && -f frontend/nginx/ssl/treq.crt  && -f fr
     echo "Key & Cert & Param-File already exists, if you want a fresh start empty out frontend/nginx/ssl"
 else
     
-    organization="TREQ{$(cat /dev/urandom | tr -dc 'a-z' | fold -w 8 | head -1)}"
+    organization="TREQ{$(cat /dev/urandom | tr -dc 'a-z' | fold -w 8 | head -1)_dontsendthisoverhttp?}"
     echo -n "$organization" | sha256sum | cut -d ' ' -f1 > backend/flags/org.hash
 
     echo "Generating Private Keys..."
@@ -39,16 +39,8 @@ fi
 
 # Start Container
 echo "Starting Containers For You...."
-docker compose down > /dev/null 2>&1
 docker compose up --build -d > /dev/null 2>&1
 
-while true; do
-    for frame in '|' '/' '-' '\\'; do
-        echo -ne "\rWaiting $frame"
-        sleep 0.1
-    done
-    curl http://localhost/health > /dev/null 2>&1 && break
-done
 
 if curl http://localhost/health > /dev/null 2>&1; then
     echo " "
@@ -57,6 +49,8 @@ if curl http://localhost/health > /dev/null 2>&1; then
     echo "Add this to your /etc/hosts file:"
     echo "  127.0.0.1 treq.test"
     echo "Then visit http://treq.test or https://treq.test"
+    echo "You can also hack! Use this Command in Bash:"
+    echo "docker exec -it treq-hacker bash"
     echo "Have fun!"
 else
     echo " Oops! Something Failed"
