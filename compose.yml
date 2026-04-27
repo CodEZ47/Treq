@@ -25,3 +25,11 @@ services:
       - treq-network
     volumes:
       - ./backend/flags:/app/flags
+
+  treq-simulator:
+    depends_on:
+      - treq-frontend
+    build: ./simulator
+    container_name: treq-simulator
+    networks:
+      - treq-network
