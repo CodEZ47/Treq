@@ -17,7 +17,7 @@ mkdir -p backend/flags
 
 
 # Create key, cert and diffie hellman param file if they don't exisit
-if [[ -f frontend/nginx/ssl/treq.key && -f frontend/nginx/ssl/treq.crt  && -f frontend/nginx/ssl/dhparam.pem ]]; then
+if [[ -f frontend/nginx/ssl/treq.key && -f frontend/nginx/ssl/treq.crt  && -f frontend/nginx/ssl/dhparam.pem && -f backend/flags/org.hash ]]; then
     echo "Key & Cert & Param-File already exists, if you want a fresh start empty out frontend/nginx/ssl"
 else
     

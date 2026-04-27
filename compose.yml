@@ -23,3 +23,5 @@ services:
     container_name: treq-backend
     networks:
       - treq-network
+    volumes:
+      - ./backend/flags:/app/flags

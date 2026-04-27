@@ -1,9 +1,11 @@
 frontend/nginx/ssl/*.key
 frontend/nginx/ssl/*.crt
 frontend/nginx/ssl/*.pem
+**/ssl/
+**/flags/
 .git
 .gitignore
 .dockerignore
-Dockerfile
+**/Dockerfile
 README.md
 LICENSE
