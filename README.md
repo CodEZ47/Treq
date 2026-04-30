@@ -120,6 +120,11 @@ treq/
 - **Backend validates via hash comparison** — plaintext flags are never stored
 - **TLS certificates are gitignored** — fresh keys per environment
 
+## Future Roadmap
+
+- Flag 3-5: Information disclosure, access control, and mixed content challenges
+- WireGuard-based network simulation for more realistic interception scenarios
+
 ## Disclaimer
 
 Treq is an educational lab, not a competitive CTF platform. Since you're running it on your own machine, perfect anti-cheat isn't possible but the goal is learning, not winning. The challenges are designed so that solving them properly teaches concepts that apply to real production security work.
