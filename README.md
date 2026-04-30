@@ -1,6 +1,6 @@
 <img width="1280" height="640" alt="treq" src="https://github.com/user-attachments/assets/94e5a3c5-495a-4c91-b608-632ae02c930b" />
 
-# Treq — A Hands-On HTTPS & TLS Security Learning Lab
+# Treq - Test | Request | Encrypt | Query
 
 Treq is a self-contained, multi-container educational lab that teaches HTTP/HTTPS security concepts through real-world challenges. Users explore live network traffic, intercept credentials, decrypt encrypted payloads, and complete CTF-style flag challenges to learn how TLS, certificates, and reverse proxies actually work in production systems.
 
