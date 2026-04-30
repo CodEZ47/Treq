@@ -6,6 +6,7 @@ COPY public /usr/share/nginx/html/public
 COPY admin /usr/share/nginx/html/admin
 COPY files/      /usr/share/nginx/html/files
 COPY morefiles/ /usr/share/nginx/html/morefiles
+COPY flag-checker.js /usr/share/nginx/html/flag-checker.js
 COPY index.html /usr/share/nginx/html
 COPY submit.html /usr/share/nginx/html
 COPY 403.html /usr/share/nginx/html

@@ -19,7 +19,10 @@ document
       .then((data) => {
         document.getElementById("result").textContent = data;
       })
-      .catch((err) => console.error(err));
+      .catch((err) => {
+        console.error(err);
+        document.getElementById("result").textContent = "Incorect Password";
+      });
   });
 
 document.getElementById("protocol").textContent =
