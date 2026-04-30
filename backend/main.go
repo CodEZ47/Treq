@@ -2,6 +2,7 @@ package main
 
 import (
 	"crypto/sha256"
+	"encoding/json"
 	"fmt"
 	"io"
 	"log"
@@ -11,9 +12,17 @@ import (
 var flags FlagsDict
 var flagsDir []string
 
+type LoginRequest struct{
+	Username string `json:"username"`
+	Password string `json:"password"`
+}
+
 func main() {
 
+	// Add hashes' directories to flags Directory
 	flagsDir = append(flagsDir, "flags/org.hash")
+	flagsDir = append(flagsDir, "flags/admin.hash")
+	// Process directories to capture flags for validation
 	flags = flagDictBuilder(flagsDir)
 
 	http.HandleFunc("/health", func(w http.ResponseWriter, r *http.Request){
@@ -40,6 +49,23 @@ func main() {
 			flags[hash] = 2
 			fmt.Fprintln(w, "Flag found!")
 		}
+
+		//temp
+		fmt.Fprintln(w, flags)
+		
+	})
+
+	http.HandleFunc("/admin/login", func(w http.ResponseWriter, r *http.Request) {
+		_, err := io.ReadAll(r.Body)
+
+		if err != nil {
+			http.Error(w, "Failed to read request", http.StatusBadRequest)
+			return
+		}
+
+		var req LoginRequest
+		json.NewDecoder(r.Body).Decode(&req)
+
 		
 	})
 

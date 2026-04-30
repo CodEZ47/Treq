@@ -21,23 +21,38 @@ services:
   treq-backend:
     build: ./backend
     container_name: treq-backend
+    depends_on:
+      - treq-crypto
     networks:
       - treq-network
     volumes:
       - ./backend/flags:/app/flags
 
-  treq-simulator:
-    depends_on:
-      - treq-frontend
-    build: ./simulator
-    container_name: treq-simulator
-    networks:
-      - treq-network
-
   treq-hacker:
-    depends_on:
-      - treq-simulator
     build: ./hacker
     container_name: treq-hacker
     networks:
       - treq-network
+
+  treq-simulator:
+    depends_on:
+      - treq-frontend
+      - treq-hacker
+    build: ./simulator
+    container_name: treq-simulator
+    environment:
+      HTTP_PROXY: "http://treq-hacker:8080"
+      HTTPS_PROXY: "http://treq-hacker:8080"
+      NO_PROXY: "localhost,127.0.0.1"
+    networks:
+      - treq-network
+
+  treq-crypto:
+    build: ./crypto
+    container_name: treq-crypto
+    environment:
+      - FERNET_KEY=${FERNET_KEY}
+    networks:
+      - treq-network
+    ports:
+      - "5000:5000"

@@ -1,5 +1,5 @@
 FROM alpine:latest
-RUN apk add --no-cache curl bash mitmproxy ncurses
+RUN apk add --no-cache curl bash mitmproxy
 COPY ./start.sh .
 RUN chmod +x start.sh
 COPY ./welcome.sh /etc/welcome.sh
