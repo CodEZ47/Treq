@@ -1,96 +1,127 @@
-
 <img width="1280" height="640" alt="treq" src="https://github.com/user-attachments/assets/94e5a3c5-495a-4c91-b608-632ae02c930b" />
 
-# Treq - Test|Request|Encrypt|Query
+# Treq — A Hands-On HTTPS & TLS Security Learning Lab
 
-A Pull-and-Play HTTPS Learning Lab in a Docker Container
+Treq is a self-contained, multi-container educational lab that teaches HTTP/HTTPS security concepts through real-world challenges. Users explore live network traffic, intercept credentials, decrypt encrypted payloads, and complete CTF-style flag challenges to learn how TLS, certificates, and reverse proxies actually work in production systems.
 
+## What You'll Learn
 
-## Project Overview
-Treq is a self-contained, educational web environment that demonstrates how data is exposed over HTTP and protected with HTTPS. Users explore hidden flags, simulate man-in-the-middle (MITM) attacks using tools like mitmproxy, and inspect how credentials and secrets behave across HTTP and HTTPS.
+- How the TLS handshake works and what certificates actually contain
+- Why HTTP exposes credentials in plaintext and HTTPS doesn't
+- How reverse proxies (nginx) sit in front of backend services
+- How forward secrecy and Diffie-Hellman key exchange protect past sessions
+- How to use real security tools — mitmproxy, openssl, tcpdump
+- How modern systems handle secrets via separate cryptographic services
 
-Learning Goals:
+## Architecture
 
-Understand the TLS handshake and HTTPS
+Treq is built as a microservices application with five containers communicating over a private Docker network:
 
-See real-time differences between HTTP and HTTPS traffic
+- **treq-frontend** — nginx reverse proxy with TLS termination, serves static pages and routes API calls
+- **treq-backend** — Go HTTP server handling flag validation and admin authentication
+- **treq-crypto** — Python Flask service that encrypts and decrypts flags using Fernet symmetric encryption
+- **treq-simulator** — Generates periodic HTTP traffic with credentials to demonstrate plaintext exposure
+- **treq-hacker** — Interactive container with mitmproxy and other tools for the user to intercept traffic
 
-Practice intercepting and analyzing plaintext HTTP requests
+## Tech Stack
 
-Explore security headers, access control, and log interception
+- **Languages**: Go, Python, Bash, JavaScript
+- **Infrastructure**: Docker, Docker Compose, nginx
+- **Security**: OpenSSL, Fernet symmetric encryption, SHA-256
+- **Tooling**: mitmproxy, curl
 
-## Requirements
-Docker installed locally
+## Quick Start
 
-Optional: mitmproxy for traffic inspection
+### Prerequisites
 
-## Getting Started
+- Docker and Docker Compose installed
+- Python 3
+- OpenSSL
 
-### Option 1: Fork & Clone & Build Locally
+### Setup
 
-Fork this repo
+1. Fork and clone this repo:
 
-git clone https://github.com/your-username/treq.git
-
+```bash
+git clone https://github.com/<your-username>/treq.git
 cd treq
+```
 
-Build the image:
+2. Add `treq.test` to your hosts file:
 
-docker build -t treq .
+```bash
+# On Linux/macOS: /etc/hosts
+# On Windows: C:\Windows\System32\drivers\etc\hosts
+127.0.0.1 treq.test
+```
 
-### Option 2: Pull Prebuilt Docker Image (if available)
+3. Run the setup script:
 
-docker pull 
+```bash
+chmod +x setup.sh
+./setup.sh
+```
 
+This single command:
 
-## TLS Setup
-Generate the required TLS files:
+- Generates fresh TLS certificates
+- Creates dynamic flag values
+- Generates an encryption key in memory
+- Spins up all five containers
+- Encrypts the flags via the crypto service
+- Validates everything is healthy
 
+4. Visit `https://treq.test` in your browser. (You'll see a self-signed certificate warning — that's expected and part of the lesson.)
 
-### Generate a private key
-openssl genrsa -out treq.key 2048
+## The Challenges
 
-### Generate a certificate (valid for 365 days)
-openssl req -new -x509 -key treq.key -out treq.crt -days 365
+### Flag 1 — Certificate Inspection
 
-### Generate a Diffie-Hellman parameter file
-openssl dhparam -out dhparam.pem 2048
+The server's certificate contains hidden information. Use OpenSSL to inspect it and find the flag.
 
-Place these files in the nginx/ssl/ folder:
+**Hint**: `openssl s_client` is your friend.
 
-nginx/ssl/
-├── treq.key
-├── treq.crt
-└── dhparam.pem
+### Flag 2 — HTTP Credential Interception
 
-# Run the Container
-Use Docker to inject the TLS secrets without baking them into the image:
+Background traffic is flowing across the network. Some of it shouldn't be transmitted in plaintext. Intercept it, find the credentials, and use them to access the admin panel.
 
-docker run -d \
-  -p 80:80 -p 443:443 \
-  -v $(pwd)/nginx/ssl/treq.key:/etc/nginx/ssl/treq.key:ro \
-  -v $(pwd)/nginx/ssl/treq.crt:/etc/nginx/ssl/treq.crt:ro \
-  -v $(pwd)/nginx/ssl/dhparam.pem:/etc/nginx/ssl/dhparam.pem:ro \
-  --name treq-server treq
+**Hint**: Get inside the network with `docker exec -it treq-hacker bash` and use mitmproxy.
 
+### Flags 3, 4, 5 — Coming Soon
 
-# Access the Lab
-Hosts File Setup
+Future challenges will explore:
 
-To access via https://treq.test, map the container IP in your system’s hosts file:
+- Information disclosure via robots.txt → leaked private keys → log decryption
+- Access control bypass between HTTP and HTTPS
+- Mixed content vulnerabilities
 
-# Edit /etc/hosts (Linux/macOS) or C:\Windows\System32\drivers\etc\hosts (Windows)
-<your-server-ip> treq.test
-Visit URLs
+## Submitting Flags
 
-http://treq.test → insecure version (interceptable)
+Visit `https://treq.test/submit.html` to submit flags as you find them. The backend validates submissions by hashing them and comparing against pre-computed hashes — flags are never stored in plaintext.
 
-https://treq.test → secure version (TLS encrypted)
+## Project Structure
 
-📋 Help & Log Inspection
-/help.txt contains instructions for MITM testing using mitmproxy
+treq/
+├── frontend/ # nginx config, static HTML, admin and submit pages
+├── backend/ # Go HTTP server (flag validation, admin login)
+├── crypto/ # Python Flask encryption service
+├── simulator/ # Background traffic generator
+├── hacker/ # User's tooling container
+├── compose.yml # Multi-container orchestration
+└── setup.sh # One-command setup
 
-/logs will show intercepted requests via HTTP (try: curl http://treq.test/logs)
+## Security Design Notes
 
-Submit all discovered flags at /submit.html
+- **Flags are dynamically generated** at setup time, never hardcoded
+- **Encryption keys live in container memory only** — never written to disk
+- **Encrypted flags on disk** — useless without the running crypto service
+- **Backend validates via hash comparison** — plaintext flags are never stored
+- **TLS certificates are gitignored** — fresh keys per environment
 
+## Disclaimer
+
+Treq is an educational lab, not a competitive CTF platform. Since you're running it on your own machine, perfect anti-cheat isn't possible but the goal is learning, not winning. The challenges are designed so that solving them properly teaches concepts that apply to real production security work.
+
+## Author
+
+Built by [CodEz47](https://github.com/codez47) as a hands-on way to deeply understand HTTPS, TLS, and modern infrastructure security.
