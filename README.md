@@ -23,6 +23,37 @@ Treq is built as a microservices application with five containers communicating 
 - **treq-simulator** — Generates periodic HTTP traffic with credentials to demonstrate plaintext exposure
 - **treq-hacker** — Interactive container with mitmproxy and other tools for the user to intercept traffic
 
+**```**mermaid\*\*
+**graph** TB
+** User**[👤 User Browser]\*\*
+** Hacker**[🔓 treq-hackermitmproxy + tools]\*\*
+** Sim**[📡 treq-simulatorBackground traffic]\*\*
+
+**subgraph** Frontend**["treq-frontend (nginx)"]**
+** TLS**[TLS TerminationPort 443]\*\*
+** HTTP**[HTTP ServerPort 80]\*\*
+** Proxy**[Reverse Proxy]\*\*
+**end**
+\*\*
+** Backend**[⚙️ treq-backendGo HTTP Server]\*\*
+** Crypto**[🔐 treq-cryptoPython Flask + Fernet]\*\*
+
+** User **-->**|HTTPS|** TLS
+** User **-->**|HTTP|** HTTP
+** Sim **-.->**|Plaintext credentials|** Hacker
+** Hacker **-.->**|Intercepts|** Sim
+** Hacker **-->**|Forwards|** Frontend
+** TLS **-->** Proxy
+** HTTP **-->** Proxy
+** Proxy **-->**|/validate, /admin/login|** Backend
+** Backend **-->**|/decrypt|** Crypto
+
+**style** Crypto **fill**:**#ffe1e1**
+**style** Hacker **fill**:**#fff4e1**
+**style** Backend **fill**:**#e1f5ff**
+**style** Frontend **fill**:**#e8ffe1**
+**```**
+
 ## Tech Stack
 
 - **Languages**: Go, Python, Bash, JavaScript
